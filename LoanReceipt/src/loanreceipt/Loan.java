@@ -74,4 +74,9 @@ public class Loan {
         return result;
 
     }
+
+    public double getMonthlyInterestRate() {
+        return this.annual_interest / 1200;
+
+    }
 }

@@ -104,4 +104,24 @@ public class Loan {
         result2 += " Month     Interest     Principal     Loan \n";
         result2 += "           Paid         Paid          Balance \n";
         result2 += "--------------------------------------------------------------\n";
+        
+            for (int month = 0; month <= months; ++month) {
+            if (month == 0) {
+                result2 += "                                       " + loan_amount;
+                result2 += "\n";
+                continue;
+            }
+            interestPaid = getMonthlyInterestRate() * previousBalance;
+
+            principal = getMonthlyPayment() - interestPaid;
+
+            previousBalance -= principal;
+
+            result2 += month + "          ";
+            result2 += Math.round(interestPaid * 100.0) / 100.0 + "         ";
+            result2 += Math.round(principal * 100.0) / 100.0 + "         ";
+            result2 += Math.round(previousBalance * 100.0) / 100.0 + "               ";
+
+            result2 += "\n";
+        }
 }

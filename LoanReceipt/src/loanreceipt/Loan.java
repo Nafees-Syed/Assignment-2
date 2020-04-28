@@ -79,4 +79,14 @@ public class Loan {
         return this.annual_interest / 1200;
 
     }
+
+    public double getMonthlyPayment() {
+        return ((getMonthlyInterestRate()) * (this.loan_amount)) / (1 - Math.pow(1 + (getMonthlyInterestRate()), -this.months));
+
+    }
+
+    public double getloanCost() {
+        return (((this.annual_interest / 1200) * (this.loan_amount)) / (1 - Math.pow(1 + (this.annual_interest / 1200), -this.months)) * this.months);
+
+    }
 }

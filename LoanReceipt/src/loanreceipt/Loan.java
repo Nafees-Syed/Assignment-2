@@ -89,4 +89,19 @@ public class Loan {
         return (((this.annual_interest / 1200) * (this.loan_amount)) / (1 - Math.pow(1 + (this.annual_interest / 1200), -this.months)) * this.months);
 
     }
+    
+    public String amortize() {
+        String result2 = "";
+        double interestPaid = 0.0;
+        double principal = 0.0;
+        double previousBalance = loan_amount;
+
+        result2 += "--------------------------------------------------------------\n";
+        result2 += "             Amortization Schedule \n";
+        result2 += "                Monthly Payment \n";
+        result2 += "              $" + getMonthlyPayment() + "\n";
+        result2 += "--------------------------------------------------------------\n";
+        result2 += " Month     Interest     Principal     Loan \n";
+        result2 += "           Paid         Paid          Balance \n";
+        result2 += "--------------------------------------------------------------\n";
 }

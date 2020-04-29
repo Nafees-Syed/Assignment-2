@@ -36,13 +36,13 @@ public class LoanReceipt {
             System.out.println(a_loan);
             System.out.println(a_loan.amortize());
             
-            System.out.print("Would you like to run another report?\n" + "Enter Y or y for yes, or any other charachter for no: ");
+            System.out.println("Would you like to run another report?\n" + "Enter Y or y for yes, or any other charachter for no: ");
             
-            answer = kb.nextLine();
-            String lowCase = answer.toLowerCase();
+            kb.nextLine();
             
-        }while (answer == "y");
-        
+            
+        }while (kb.nextLine().equals("y"));
+      
         System.out.println("goodbye!");
         
 

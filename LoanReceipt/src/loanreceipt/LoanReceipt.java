@@ -38,10 +38,10 @@ public class LoanReceipt {
             
             System.out.println("Would you like to run another report?\n" + "Enter Y or y for yes, or any other charachter for no: ");
             
-            kb.nextLine();
+           answer = kb.next();
             
             
-        }while (kb.nextLine().equals("y"));
+        }while (answer.equals("y"));
       
         System.out.println("goodbye!");
         

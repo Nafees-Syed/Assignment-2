@@ -6,6 +6,12 @@
 package loanreceipt;
 
 /**
+ * A program that outputs neatly the loan amount, the annual interest, the months, 
+ * the monthly interest rate, the monthly payment and the loan cost after interests.
+ * Set loan_amount, annual_interest and months as attributes. Seperate the output 
+ * in 2 category, one where the inputs from the keyboard will be neatly shown alongside
+ * the monthly payment and the total interest paid. The other will show a schedule 
+ * for the loan amortization in order.
  *
  * @author Natsu
  */
@@ -20,7 +26,7 @@ public class Loan {
         this.annual_interest = annual_interest;
         this.months = months;
     }
-
+//set an error message if the user inputs a negative integer, lam(loan amount)
     public void setLoanAmount(double lam) {
         this.loan_amount = lam;
 
@@ -28,7 +34,7 @@ public class Loan {
             throw new IllegalArgumentException("Loan: setLoanAmount: the loan amount must not be a negative number");
         }
     }
-
+//set an error message if the user inputs a negative integer, air(annual interest rate)
     public void setAnnualInterestRate(double air) {
         this.annual_interest = air;
 
@@ -36,7 +42,7 @@ public class Loan {
             throw new IllegalArgumentException("Loan: setAnualInterestRate: the annual interest rate must not be a negative number");
         }
     }
-
+//set an error message if the user inputs a negative integer for the number of months
     public void setMonths(int month) {
         this.months = month;
 
@@ -57,6 +63,7 @@ public class Loan {
         return this.months;
     }
 
+//return a String representing a table neatly starting with the loan amount, annual interest rate, loans term in months, monthly payments and total interest paid.
     @Override
     public String toString() {
 
@@ -74,22 +81,22 @@ public class Loan {
         return result;
 
     }
-
+//set the getter for the monthly interest rate with the equation inside 
     public double getMonthlyInterestRate() {
         return this.annual_interest / 1200;
 
     }
-
+//set the getter for the monthly payment with the equation inside
     public double getMonthlyPayment() {
         return ((getMonthlyInterestRate()) * (this.loan_amount)) / (1 - Math.pow(1 + (getMonthlyInterestRate()), -this.months));
 
     }
-
+//set the getter method for the loan cost with the equation inside
     public double getloanCost() {
         return (((this.annual_interest / 1200) * (this.loan_amount)) / (1 - Math.pow(1 + (this.annual_interest / 1200), -this.months)) * this.months);
 
     }
-
+//return a String representing a table with the month, interest paid, principal paid, loan balance
     public String amortize() {
         String result2 = "";
         double interestPaid = 0.0;
@@ -105,18 +112,23 @@ public class Loan {
         result2 += "           Paid         Paid          Balance \n";
         result2 += "--------------------------------------------------------------\n";
 
+//make a loop that calculate the interest paid, principal paid, loan balance, that has the same amount of line as the length of the months
         for (int month = 0; month <= months; ++month) {
             if (month == 0) {
                 result2 += "                                       " + loan_amount;
                 result2 += "\n";
                 continue;
             }
+//set the equation for the interest paid           
             interestPaid = getMonthlyInterestRate() * previousBalance;
 
+//set the equation for the principal
             principal = getMonthlyPayment() - interestPaid;
-
+            
+//set the previousBalance to the principal
             previousBalance -= principal;
-
+            
+//print the lines with the values
             result2 += month + "          ";
             result2 += Math.round(interestPaid * 100.0) / 100.0 + "         ";
             result2 += Math.round(principal * 100.0) / 100.0 + "         ";
